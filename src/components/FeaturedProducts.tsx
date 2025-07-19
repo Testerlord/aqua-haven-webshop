@@ -6,6 +6,23 @@ import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Heart, Eye, Star } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
+// Import images
+import bettaHalfmoonBlue from "@/assets/betta-halfmoon-blue.jpg";
+import goldfishRyukin from "@/assets/goldfish-ryukin.jpg";
+import angelfishSilver from "@/assets/angelfish-silver.jpg";
+import clownfishNemo from "@/assets/clownfish-nemo.jpg";
+import bettaCrowntailRed from "@/assets/betta-crowntail-red.jpg";
+import goldfishOranda from "@/assets/goldfish-oranda.jpg";
+
+const imageMap: Record<string, string> = {
+  '/src/assets/betta-halfmoon-blue.jpg': bettaHalfmoonBlue,
+  '/src/assets/goldfish-ryukin.jpg': goldfishRyukin,
+  '/src/assets/angelfish-silver.jpg': angelfishSilver,
+  '/src/assets/clownfish-nemo.jpg': clownfishNemo,
+  '/src/assets/betta-crowntail-red.jpg': bettaCrowntailRed,
+  '/src/assets/goldfish-oranda.jpg': goldfishOranda,
+};
+
 interface Product {
   id: string;
   name: string;
@@ -101,7 +118,7 @@ export const FeaturedProducts = () => {
                     <div className="aspect-square bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
                       {product.image_url ? (
                         <img
-                          src={product.image_url}
+                          src={imageMap[product.image_url] || product.image_url}
                           alt={product.name}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         />
